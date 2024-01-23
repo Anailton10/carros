@@ -4,7 +4,7 @@ from .models import Car, Brand
 
 class BrandAdmin(admin.ModelAdmin):
     list_display = ('name',)
-    search_fields = ('name,')
+    search_fields = ('name',)
 
 
 class CarAdmin(admin.ModelAdmin):
