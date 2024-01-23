@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cars',
+    
 ]
 
 MIDDLEWARE = [
@@ -105,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'American/Fortaleza'
+TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
 
