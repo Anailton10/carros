@@ -36,3 +36,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+from django.shortcuts import render
+
+# Create your views here.
