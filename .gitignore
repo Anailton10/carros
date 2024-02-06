@@ -55,6 +55,7 @@ atlassian-ide-plugin.xml
 *.py[cod]
 *$py.class
 
+
 # Distribution / packaging
 .Python build/
 develop-eggs/
@@ -116,6 +117,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+mypy.ini
 
 # Sublime Text #
 *.tmlanguage.cache
