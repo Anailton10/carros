@@ -1,6 +1,6 @@
-from .models import Car
+from django.views.generic import ListView, CreateView, DetailView
 from cars.forms import CarModelForm
-from django.views.generic import ListView, CreateView
+from .models import Car
 
 
 class CarsView(ListView):
