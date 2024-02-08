@@ -1,4 +1,7 @@
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView  # noqa: E501
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from cars.forms import CarModelForm
 from .models import Car
 
@@ -18,20 +21,31 @@ class CarsView(ListView):
         return cars
 
 
-class NewCarCreateView(CreateView):
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class NewCarCreateView(CreateView):  # Create
     model = Car
     form_class = CarModelForm
     template_name = 'new_car.html'
     success_url = '/cars/'
 
 
-class CarDetailView(DetailView):
+class CarDetailView(DetailView):  # Read
     model = Car
     template_name = 'car_detail.html'
 
 
-class CarUpdateView(UpdateView):
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class CarUpdateView(UpdateView):  # Update
     model = Car
     form_class = CarModelForm
     template_name = 'car_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('car_detail', kwargs={'pk': self.object.pk})
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class CarDeleteView(DeleteView):  # Delete
+    model = Car
+    template_name = 'car_delete.html'
     success_url = '/cars/'
