@@ -1,21 +1,17 @@
-from django.db.models.signals import post_save, post_delete  # noqa: E501
 from django.db.models import Sum
+from django.db.models.signals import post_delete, post_save  # noqa: E501
 from django.dispatch import receiver
+
 from cars.models import Car, CarInventory
 
 
 def cars_inventory_update():
-    '''
-        Update inventory...
-    '''
+    """
+    Update inventory...
+    """
     cars_count = Car.objects.all().count()
-    cars_value = Car.objects.aggregate(
-        total_value=Sum('value')
-    )['total_value']
-    CarInventory.objects.create(
-        cars_count=cars_count,
-        cars_value=cars_value
-    )
+    cars_value = Car.objects.aggregate(total_value=Sum("value"))["total_value"]
+    CarInventory.objects.create(cars_count=cars_count, cars_value=cars_value)
 
 
 @receiver(post_save, sender=Car)
