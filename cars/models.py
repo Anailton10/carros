@@ -27,10 +27,17 @@ class Car(models.Model):
 
 
 class CarInventory(models.Model):
+    """
+    Model feita para registro de carros
+    """
+
     cars_count = models.IntegerField()
     cars_value = models.FloatField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+        auto_now_add=True
+    )  # Data e Hora da criação automatico
 
+    # Define a ordenação padrão dos registros pela data de criação, do mais recente para o mais antigo # noqa: E501
     class Meta:
         ordering = ["-created_at"]
 
