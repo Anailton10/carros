@@ -4,6 +4,8 @@ from django.dispatch import receiver
 
 from cars.models import Car, CarInventory
 
+# from openai_api.client import get_car_ai_bio
+
 
 def cars_inventory_update():
     """
@@ -18,6 +20,8 @@ def cars_inventory_update():
 def car_pre_save(sender, instance, **kwargs):
     if not instance.bio:
         instance.bio = "Bio criada via signals"
+        # # ai_bio = get_car_ai_bio(instance.model, instance.brand, instance.year) # noqa: E501
+        # instance.bio = ai_bio
 
 
 @receiver(post_save, sender=Car)
