@@ -21,12 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-psv0zngbpvla90w@bbpbja23w-c&6%_2rnr4bv!$+$85tlh*dt"  # noqa: E501
-)
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if os.environ.get("DEBUG") == "1" else False
 
 ALLOWED_HOSTS = ["*"]  # libera todos os IP dos servidores
 # 54.159.4.87
@@ -80,12 +78,12 @@ WSGI_APPLICATION = "app.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "carros",
-        "USER": "postgres",
-        "PASSWORD": "An23107@",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": os.environ.get("DATABAE_ENGINE"),
+        "NAME": os.environ.get("DATABASE_NAME"),
+        "USER": os.environ.get("DATABASE_USER"),
+        "PASSWORD": os.environ.get("DATABASE_PASSWORD"),
+        "HOST": os.environ.get("DATABASE_HOST"),
+        "PORT": os.environ.get("DATABASE_PORT"),
     }
 }
 
@@ -124,8 +122,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
